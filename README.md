@@ -1,5 +1,5 @@
 # find_the_site
-## Do you need a company website? This small library finds websites in duckduckgo website.
+## Do you need a company website? This small library finds websites in [duckduckgo search engine](https://duckduckgo.com/?t=hk)
 ##### Install
 
 ```
