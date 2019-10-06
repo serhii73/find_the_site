@@ -1,6 +1,6 @@
 # find_the_site
-## Do you need a company website? This small library finds websites in duckduckgo website.
-##### Install
+## Are you looking for a company/enterprise website? This small library finds websites in [duckduckgo search engine](https://duckduckgo.com/?t=hk)
+##### How to Install ?
 
 ```
 pip install find_the_site
