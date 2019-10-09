@@ -2,8 +2,10 @@
 import requests
 from bs4 import BeautifulSoup
 from user_agent import generate_user_agent
+from functools import lru_cache
 
 
+@lru_cache(maxsize=1024)
 def get_website(need_website=None):
     """Return a website."""
     website = None
