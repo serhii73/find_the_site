@@ -2,22 +2,17 @@
 import requests
 from bs4 import BeautifulSoup
 from user_agent import generate_user_agent
+from typing import List
 
 
-def get_website(need_website=None):
-    """Return a website."""
-    website = None
-    if need_website:
-        # Find website
-        find_website_ddg = "website " + need_website
-        ua = generate_user_agent()
-        headers = {"User-Agent": ua}
-        payload = {"q": find_website_ddg, "kl": "us-en"}
-        r = requests.post("https://duckduckgo.com/lite/", headers=headers, data=payload)
-        soup = BeautifulSoup(r.text, "html.parser")
-        website_list = [
-            i.get("href") for i in soup.find_all("a", {"class", "result-link"})
-        ]
-        if website_list:
-            website = website_list[0]
-    return website_list
+def get_website(query: str) -> List[str]:
+    website_query = f"website {query}"
+    headers = {"User-Agent": generate_user_agent()}
+    payload = {"q": website_query, "kl": "us-en"}
+    response = requests.post(
+        "https://duckduckgo.com/lite/", headers=headers, data=payload
+    )
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    site_list = [link["href"] for link in soup.findAll("a", {"class": "result-link"})]
+    return site_list
