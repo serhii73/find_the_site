@@ -3,8 +3,9 @@ import requests
 from bs4 import BeautifulSoup
 from user_agent import generate_user_agent
 from typing import List
+from functools import lru_cache
 
-
+@lru_cache(maxsize=1024)
 def get_website(query: str) -> List[str]:
     website_query = f"website {query}"
     headers = {"User-Agent": generate_user_agent()}
