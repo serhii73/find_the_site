@@ -7,9 +7,11 @@ Get a website from https://www.ecosia.org/          [optional]
 import requests
 from bs4 import BeautifulSoup
 from user_agent import generate_user_agent
+from functools import lru_cache
 
 
 def get_website(need_website=None, eco=False):
+  
     """Return a website."""
 
     website = None
