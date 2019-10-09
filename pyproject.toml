@@ -19,7 +19,7 @@ classifiers = [
 
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.6"
 requests = "^2.22"
 beautifulsoup4 = "^4.7.1"
 user-agent = "^0.1.9"

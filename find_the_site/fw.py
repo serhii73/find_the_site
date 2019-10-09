@@ -1,49 +1,35 @@
-"""
-Get a website from http://ddg.gg/            [default]
-or
-Get a website from https://www.ecosia.org/          [optional]
-(to plant trees)
-"""
+"""Get a website from http://ddg.gg/ ."""
 import requests
 from bs4 import BeautifulSoup
 from user_agent import generate_user_agent
+from typing import List
 from functools import lru_cache
 
-
-def get_website(need_website=None, eco=False):
-  
-    """Return a website."""
-
-    website = None
-    ua = generate_user_agent()
-    headers = {"User-Agent": ua}
-
+@lru_cache(maxsize=1024)
+def get_website(query: str, eco: False) -> List[str]:
+    headers = {"User-Agent": generate_user_agent()}
     if eco:
         # Find website with ecosia to plant trees yay!!!
         url = "https://www.ecosia.org/search?"
-        words = need_website.split(" ")
+        words = query.split(" ")
         query = "q=website"
         for w in words:
             query += "+" + str(w)
         url = url + query
-        r = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers)
     else:
-        # Find website with duckduckgo [default]
-        find_website_ddg = "website " + need_website
-        url = "https://duckduckgo.com/lite/"
-        payload = {"q": find_website_ddg, "kl": "us-en"}
-        r = requests.post(url, headers=headers, data=payload)
+        website_query = f"website {query}"
 
-    soup = BeautifulSoup(r.text, "html.parser")
+        payload = {"q": website_query, "kl": "us-en"}
+        response = requests.post(
+            "https://duckduckgo.com/lite/", headers=headers, data=payload
+        )
+    soup = BeautifulSoup(response.text, "html.parser")
 
     if eco:
-        website_list = [
-            i.get("href") for i in soup.find_all("a", {"class", "result-url js-result-url"})
-        ]
+        site_list = [link["href"] for link in soup.findAll("a", {"class": "result-url js-result-url"})]
+
     else:
-        website_list = [
-            i.get("href") for i in soup.find_all("a", {"class", "result-link"})
-        ]
-    if website_list:
-        website = website_list[0]
-    return website_list
+        site_list = [link["href"] for link in soup.findAll("a", {"class": "result-link"})]
+
+    return site_list
