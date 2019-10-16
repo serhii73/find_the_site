@@ -1,20 +1,25 @@
 """Get a website from http://ddg.gg/ ."""
+from functools import lru_cache
+from typing import List
+
 import requests
 from bs4 import BeautifulSoup
 from user_agent import generate_user_agent
-from typing import List
-from functools import lru_cache
+
 
 @lru_cache(maxsize=1024)
 def get_website(query: str, eco: False) -> List[str]:
+    """
+    Return a list of website
+    """
     headers = {"User-Agent": generate_user_agent()}
     if eco:
         # Find website with ecosia to plant trees yay!!!
         url = "https://www.ecosia.org/search?"
         words = query.split(" ")
         query = "q=website"
-        for w in words:
-            query += "+" + str(w)
+        for word in words:
+            query += "+" + str(word)
         url = url + query
         response = requests.get(url, headers=headers)
     else:
@@ -27,7 +32,8 @@ def get_website(query: str, eco: False) -> List[str]:
     soup = BeautifulSoup(response.text, "html.parser")
 
     if eco:
-        site_list = [link["href"] for link in soup.findAll("a", {"class": "result-url js-result-url"})]
+        site_list = [link["href"]
+                     for link in soup.findAll("a", {"class": "result-url js-result-url"})]
 
     else:
         site_list = [link["href"] for link in soup.findAll("a", {"class": "result-link"})]
