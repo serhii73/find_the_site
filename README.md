@@ -1,3 +1,10 @@
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/serhii73/find_the_site/graphs/commit-activity)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![GitHub contributors](https://img.shields.io/github/contributors/serhii73/find_the_site.svg)](https://GitHub.com/serhii73/find_the_site/graphs/contributors/)
+[![GitHub stars](https://img.shields.io/github/stars/serhii73/find_the_site.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/serhii73/find_the_site/stargazers/)
+![GitHub forks](https://img.shields.io/github/forks/serhii73/find_the_site.svg?style=social)
+[![GitHub issues](https://img.shields.io/github/issues/serhii73/find_the_site.svg)](https://GitHub.com/serhii73/find_the_site/issues/)
+
 # find_the_site
 ## Are you looking for a company/enterprise website? This small library finds websites in [duckduckgo search engine](https://duckduckgo.com/?t=hk)
 #### Optionally you can use:
