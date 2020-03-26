@@ -33,9 +33,9 @@ def get_website(query: str, eco: False) -> List[str]:
 
     if eco:
         site_list = [link["href"]
-                     for link in soup.findAll("a", {"class": "result-url js-result-url"})]
+                     for link in soup.findAll("a", {"class": "result-url js-result-url"}) if not 'duckduckgo.com/y.js' in link["href"]]
 
     else:
-        site_list = [link["href"] for link in soup.findAll("a", {"class": "result-link"})]
+        site_list = [link["href"] for link in soup.findAll("a", {"class": "result-link"}) if not 'duckduckgo.com/y.js' in link["href"]]
 
     return site_list
