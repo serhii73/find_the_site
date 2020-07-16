@@ -16,26 +16,19 @@ pip install find_the_site
 ```
 
 ##### How to use ?
-
-def get_website(website, eco=False)
-> **website**: Whose website you are searching for
->
-> **eco**: 
->- **True**: Use ecosia search.
->- **default**: **False**
-
-##### Find the website
-
-```
-In [1]: from find_the_site.fw import get_website                                               
-
-In [2]: get_website("UNITED NATIONS")                                                          
-Out[2]: 'https://www.un.org/en/'
-```
-#
 ```
 In [1]: from find_the_site.fw import get_website 
+In [2]: get_website("UNITED NATIONS", eco=True)                                
+Out[2]: 
+['http://www.un.org/en/',
+ 'https://en.wikipedia.org/wiki/United_Nations',
+ 'https://www.undp.org/content/undp/en/home.html',
+ 'https://scholarshipscorner.website/united-nations/',
+ 'https://www.unenvironment.org/',
+ 'https://unnwo.org/',
+ 'https://peacekeeping.un.org/en',
+ 'https://www.unodc.org/',
+ 'https://careers.un.org/',
+ 'https://www.unicef.org/']
 
-In [2]: get_website("UNITED NATIONS", eco=True)                                                          
-Out[2]: 'https://www.un.org/en/'
 ```
